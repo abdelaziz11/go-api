@@ -4,11 +4,11 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	_ "github.com/lib/pq"
-	"./config"
-	"./controllers"
-	"./database"
-	"./middlewares"
-	"./routes"
+	"github.com/abdelaziz11/go-api/config"
+	"github.com/abdelaziz11/go-api/controllers"
+	"github.com/abdelaziz11/go-api/database"
+	"github.com/abdelaziz11/go-api/middlewares"
+	"github.com/abdelaziz11/go-api/routes"
 )
 
 func main() {
