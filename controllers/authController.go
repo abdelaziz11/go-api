@@ -3,8 +3,8 @@ package controllers
 import (
 	"net/http"
 	"github.com/labstack/echo"
-	"../models"
-	"../database"
+	"api/models"
+	"api/database"
 	"golang.org/x/crypto/bcrypt"
 )
 

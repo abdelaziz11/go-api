@@ -4,8 +4,10 @@ import (
 	"net/http"
 	"github.com/labstack/echo"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/yourusername/yourprojectname/models"
-	"github.com/yourusername/yourprojectname/database"
+	"api/models"
+	"api/database"
+	"github.com/google/uuid"
+
 )
 
 func Init() {
@@ -33,11 +35,13 @@ func IsAuthenticated(next echo.HandlerFunc) echo.HandlerFunc {
 
 		if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 			user := models.User{}
-			database.GetDB().Where("id = ?", claims["user_id"]).First(&user)
-
-			if user.ID == "" {
+			d :=database.GetDB()
+            
+			d.QueryRow("SELECT id, username, created_at, updated_at FROM users WHERE id = $1", claims["id"]).Scan(&user.ID, &user.Username, &user.CreatedAt, &user.UpdatedAt)
+            if user.ID == uuid.Nil {
 				return echo.NewHTTPError(http.StatusUnauthorized, "User not found")
-			}
+			} 
+			
 
 			c.Set("user", user)
 			return next(c)

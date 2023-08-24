@@ -4,12 +4,13 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	_ "github.com/lib/pq"
-	"github.com/abdelaziz11/go-api/config"
-	"github.com/abdelaziz11/go-api/controllers"
-	"github.com/abdelaziz11/go-api/database"
-	"github.com/abdelaziz11/go-api/middlewares"
-	"github.com/abdelaziz11/go-api/routes"
+	"api/config"
+	"api/database"
+	"api/middlewares"
+	"api/routes"
 )
+
+
 
 func main() {
 	e := echo.New()
@@ -36,6 +37,5 @@ func main() {
 }
 
 func init() {
-	controllers.Init()
 	middlewares.Init()
 }
